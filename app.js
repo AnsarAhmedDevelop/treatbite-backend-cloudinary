@@ -24,9 +24,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 
 // CORS middleware: Allow requests only from the frontend URL specified in config
-app.use(cors({
-    origin:Config.FRONTEND_URL    
-}));
+// app.use(cors({
+//     origin:Config.FRONTEND_URL    
+// }));
+app.use(cors());
 
 // Default route for testing the server
 // When you visit http://localhost:PORT/ in a browser, you'll see this message
