@@ -39,13 +39,9 @@ const restaurantSchema = mongoose.Schema(
             enum: ["allDayDining", "privateDiningRoom", "waterfrontDining", "outdoorDining", "kidsPlayArea", "familyFriendly", "Brunch", "Breakfast", "smookingArea"],
         },
         coverPhoto: {
-            url: String,
-            public_id: String
+            type: String            
         },
-        ambiencePhotos: [{
-            url: String,
-            public_id: String
-        }]
+        ambiencePhotos: { type: [String] }
     },
     {
         timestamps: true
@@ -54,3 +50,4 @@ const restaurantSchema = mongoose.Schema(
 const restaurantModel = mongoose.model("Restaurant", restaurantSchema)
 
 export default restaurantModel
+

@@ -32,12 +32,14 @@ const userSchema = mongoose.Schema(
             type: Number,
             default: 0
         },     
+        // avatar: {
+        //     url: String,
+        //     public_id: String
+        // },
         avatar: {
-            url: String,
-            public_id: String
+           type: String
         }
     },
-
     {
       
         timestamps: true

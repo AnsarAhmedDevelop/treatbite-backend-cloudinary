@@ -47,3 +47,8 @@ export const uploadImages = multer({
   { name: "ambiencePhotos", maxCount: 5 },
 ]);
 // Now req.files will contain Cloudinary URLs instead of local paths.
+
+
+
+
+

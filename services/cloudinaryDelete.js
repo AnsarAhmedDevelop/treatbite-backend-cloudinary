@@ -9,3 +9,8 @@ export const deleteFromCloudinary = async (public_id) => {
     console.error(`Failed to delete ${public_id} from Cloudinary:`, err);
   }
 };
+
+export function extractCloudinaryPath(url) {
+    return url.replace(/^.*upload\/v\d+\//, "") // remove everything before folder path
+              .replace(/\.[^/.]+$/, "");        // remove file extension
+}

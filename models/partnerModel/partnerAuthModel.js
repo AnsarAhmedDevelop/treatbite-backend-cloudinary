@@ -35,9 +35,12 @@ const partnerSchema = mongoose.Schema(
             type: Boolean,
             default: false
         },
+        // avatar: {
+        //     url: String,
+        //     public_id: String
+        // }
         avatar: {
-            url: String,
-            public_id: String
+            type: String
         }
     }, {
     timestamps: true

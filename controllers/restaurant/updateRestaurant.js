@@ -1,6 +1,6 @@
 import createHttpError from "http-errors";
 import restaurantModel from "../../models/restaurantModel/restaurantModel.js";
-import { deleteFromCloudinary } from "../../services/cloudinaryDelete.js";
+import { deleteFromCloudinary, extractCloudinaryPath } from "../../services/cloudinaryDelete.js";
 
 
 export const updateRestaurantController = async (req, res, next) => {  
@@ -50,28 +50,23 @@ export const updateRestaurantController = async (req, res, next) => {
 
         // Cover Photo update
     if (req.files?.coverPhoto?.[0]) {
-      if (restaurant.coverPhoto?.public_id) {
-        await deleteFromCloudinary(restaurant.coverPhoto.public_id);
+      if (restaurant.coverPhoto) {
+          const url=extractCloudinaryPath(restaurant.coverPhoto)
+        await deleteFromCloudinary(url);
       }
-      restaurant.coverPhoto = {
-        url: req.files.coverPhoto[0].path,
-        public_id: req.files.coverPhoto[0].filename
-      };
+      restaurant.coverPhoto = req.files.coverPhoto[0].path;
     }
 
     // Ambience Photos update
-    if (req.files?.ambiencePhotos?.length) {
-      if (restaurant.ambiencePhotos?.length) {
-        for (const img of restaurant.ambiencePhotos) {
-          if (img.public_id) {
-            await deleteFromCloudinary(img.public_id);
-          }
-        }
-      }
-      restaurant.ambiencePhotos = req.files.ambiencePhotos.map(file => ({
-        url: file.path,
-        public_id: file.filename
-      }));
+    if (req.files?.ambiencePhotos?.length) {     
+
+          if (restaurant.ambiencePhotos.length > 0) {
+                for (const oldPath of restaurant.ambiencePhotos) {
+                  const url=extractCloudinaryPath(oldPath)
+                    await deleteFromCloudinary(url);
+                }
+            }
+      restaurant.ambiencePhotos = req.files.ambiencePhotos.map(file => file.path);
     }
 
      

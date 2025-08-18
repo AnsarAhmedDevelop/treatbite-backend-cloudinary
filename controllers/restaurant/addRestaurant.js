@@ -26,19 +26,13 @@ export const addRestaurantController = async (req, res, next) => {
         let coverPhotoData = null;
         let ambiencePhotosData = [];
 
-        if (req.files?.coverPhoto && req.files.coverPhoto.length > 0) {
+        if (req.files?.coverPhoto) {
             const file = req.files.coverPhoto[0];
-            coverPhotoData = {
-                url: file.path, // Cloudinary URL
-                public_id: file.filename, // Cloudinary public_id
-            };
+            coverPhotoData = file.path;
         }
 
         if (req.files?.ambiencePhotos && req.files.ambiencePhotos.length > 0) {
-            ambiencePhotosData = req.files.ambiencePhotos.map(file => ({
-                url: file.path,
-                public_id: file.filename,
-            }));
+            ambiencePhotosData = req.files.ambiencePhotos.map(file => file.path);
         }
 
 
