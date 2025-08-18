@@ -3,7 +3,7 @@ import createHttpError from "http-errors";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../../services/JwtService.js";
 import partnerModel from "../../models/partnerModel/partnerAuthModel.js";
-import { Config } from "../../config/index.js";
+
 
 export const loginController = async (req, res, next) => {
     try {

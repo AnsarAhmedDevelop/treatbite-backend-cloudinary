@@ -59,12 +59,7 @@ import { Config } from "../../config/index.js";
         // Choose a random background color from the array
         const randomBackgroundColor =
             backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
-     
-        const avatarPath={
-            url: `https://ui-avatars.com/api/?name=${fullName}&&color=fff&&background=${randomBackgroundColor}&&rounded=true&&font-size=0.44`,
-            public_id:""
-        }
-     
+              
          // create is mongoose syntax used for creating user in database
         // it is db operation so we have to use await
       const newPartner =  await new partnerModel({        
@@ -75,7 +70,7 @@ import { Config } from "../../config/index.js";
             contact,
             verifyOtp: otp,
             verifyOtpExpireAt: expireAt,
-            avatar: avatarPath
+            avatar: `https://ui-avatars.com/api/?name=${fullName}&&color=fff&&background=${randomBackgroundColor}&&rounded=true&&font-size=0.44`
         }).save();
  
          await new restaurantModel({

@@ -58,11 +58,7 @@ import { Config } from "../../config/index.js";
         const randomBackgroundColor =
             backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
       
-        const avatarPath={
-            url: `https://ui-avatars.com/api/?name=${fullName}&&color=fff&&background=${randomBackgroundColor}&&rounded=true&&font-size=0.44`,
-            public_id:""
-        }
-
+       
           // create is mongoose syntax used for creating user in database
         // it is db operation so we have to use await
         await userModel.create({
@@ -73,7 +69,7 @@ import { Config } from "../../config/index.js";
             role,
             verifyOtp: otp,
             verifyOtpExpireAt: expireAt,
-            avatar: avatarPath
+            avatar: `https://ui-avatars.com/api/?name=${fullName}&&color=fff&&background=${randomBackgroundColor}&&rounded=true&&font-size=0.44`
         })
 
         // for sending email we use nodemailer library
