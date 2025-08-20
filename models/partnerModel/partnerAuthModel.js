@@ -34,11 +34,7 @@ const partnerSchema = mongoose.Schema(
         isApproved: {
             type: Boolean,
             default: false
-        },
-        // avatar: {
-        //     url: String,
-        //     public_id: String
-        // }
+        },      
         avatar: {
             type: String
         }
