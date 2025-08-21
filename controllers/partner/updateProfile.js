@@ -29,11 +29,7 @@ export const updateProfileController = async (req, res, next) => {
            const url=extractCloudinaryPath(user.avatar)
            await deleteFromCloudinary(url);
          }
-         // Save new avatar
-         // user.avatar = {
-         //   url: req.files.avatar[0].path,
-         //   public_id: req.files.avatar[0].filename
-         // };
+         // Save new avatar 
          user.avatar = req.files.avatar[0].path;
        }
 

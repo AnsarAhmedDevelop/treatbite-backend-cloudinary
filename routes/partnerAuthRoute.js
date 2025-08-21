@@ -11,6 +11,7 @@ import { updateProfileController } from "../controllers/partner/updateProfile.js
 import { otpResetPasswordController } from "../controllers/partner/otpResetPassword.js";
 import { resetPasswordController } from "../controllers/partner/resetPassword.js";
 import { uploadImages } from "../middlewares/uploadImages.js";
+import userResetPasswordValidator from "../validators/userResetPassword-validator.js";
 const router=express.Router();
 
 //  http://localhost:5000/api/partner/register
@@ -25,7 +26,7 @@ router.post("/login",userLoginValidator, loginController);
 router.get("/profile",isAuthenticated, profileController);
 router.put("/updateProfile",uploadImages, partnerProfileUpdateValidator, isAuthenticated, updateProfileController)
 router.post("/otpResetPassword",otpResetPasswordController)
-router.post("/resetPassword",partnerProfileUpdateValidator, resetPasswordController)
+router.post("/resetPassword",userResetPasswordValidator, resetPasswordController)
 
 
 export default router;
